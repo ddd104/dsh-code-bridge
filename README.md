@@ -6,21 +6,21 @@
 
 ## 安装 DSH 接收端
 
-打开 DSH **插件 → 添加插件**，输入仓库根目录：
+打开 DSH **插件 → 添加插件**，输入仓库地址：
 
 ```text
-D:\AI\dsh-code-bridge
+https://github.com/ddd104/dsh-code-bridge
 ```
 
-根目录含已构建的 `lib/` 和插件声明，安装时不需要 Node.js 或执行构建脚本。也可选择 `dist/code-editors/dsh-code-bridge-0.3.0.tgz`。安装后完整退出 DSH（包括托盘）再重新打开。
+本文中的 `./` 表示克隆后的仓库根目录，命令默认在该目录执行。从本地安装时，将仓库根目录 `./` 或已生成的 `./dist/code-editors/dsh-code-bridge-0.3.0.tgz` 的实际完整路径填入安装框。
 
-代码推送到 GitHub 后，同一输入框可使用 `https://github.com/ddd104/dsh-code-bridge`；未推送的本地修改不会出现在远端安装中。仅安装接收端还需要安装对应编辑器扩展。
+仓库含已构建的 `./lib/` 和插件声明，安装接收端时不需要 Node.js 或执行构建脚本。安装后完整退出 DSH（包括托盘）再重新打开；还需安装对应编辑器扩展才能添加代码选区。GitHub 安装使用远端已推送的版本。
 
 ## 一键安装两端
 
-从源码安装，双击根目录 **install.bat**。需要 Node.js 22+、npm 和已经启动过的 DSH。脚本安装开发依赖，构建发行包，然后安装 DSH 接收端和本机可用的编辑器扩展。
+从源码安装，双击根目录的 [install.bat](./install.bat)。需要 Node.js 22+、npm 和已经启动过的 DSH。脚本安装开发依赖，构建发行包，然后安装 DSH 接收端和检测到的编辑器扩展。
 
-使用已经生成的发行包时，把 `dist/code-editors/` 下的安装包、`release.json`、`install.bat`、`install-code-editors.ps1`、`resolve-dsh-cli.ps1` 放在同一目录，双击其中的 **install.bat**。发行安装不需要系统 Node.js、npm、JDK 或 IDE SDK。
+使用已经生成的发行包时，把 `./dist/code-editors/` 下的安装包、`release.json`、`install.bat`、`install-code-editors.ps1`、`resolve-dsh-cli.ps1` 放在同一目录，双击其中的 `install.bat`。发行安装不需要系统 Node.js、npm、JDK 或 IDE SDK。
 
 | 组件 | 支持要求 | 安装方式 |
 | --- | --- | --- |
@@ -35,7 +35,7 @@ D:\AI\dsh-code-bridge
 
 ### 常用选项
 
-在仓库根目录执行；发行目录使用 `./install-code-editors.ps1` 及相同选项：
+以下命令在仓库根目录执行；如果已进入发行目录 `./dist/code-editors/`，改用该目录下的 `./install-code-editors.ps1` 及相同选项：
 
 ```powershell
 # 使用已生成的包，只安装 DSH 和 VS Code
@@ -59,7 +59,7 @@ DSH 配置备份在对应 profile 的 `.plugin-manager/dsh-code-bridge-backups/`
 3. 确认代码附件已加入当前会话，补充问题后手动发送。
 4. 悬停附件预览，点击固定预览，可编辑、保存或删除附件。
 
-支持未保存的文件内容、多选区和跨文件多次添加；附件编辑只修改本次上下文，不修改源文件。普通框选不会同步。每次最多 32 个选区、128 Ki UTF-16 单元；不支持没有路径的新建文件及 SSH/WSL/远程工作区。完整行为见 [使用说明](docs/code-editors.md)。
+支持未保存的文件内容、多选区和跨文件多次添加；附件编辑只修改本次上下文，不修改源文件。普通框选不会同步。每次最多 32 个选区、128 Ki UTF-16 单元；不支持没有路径的新建文件及 SSH/WSL/远程工作区。完整行为见 [使用说明](./docs/code-editors.md)。
 
 ## 开发和打包
 
@@ -73,4 +73,4 @@ npm run package:editors
 
 JetBrains 构建需要 JDK 21 和对应版本的 IDE SDK，可通过 `RIDER_HOME`、`ANDROID_STUDIO_HOME` 指定程序安装目录。VSIX 使用固定的 `@vscode/vsce@3.6.2`，首次需要联网下载。不会自动下载或升级完整 IDE。
 
-本仓库保留 `editors/` 结构，运行逻辑与来源一致；根目录提供独立依赖、构建产物、安装入口及发行工具。[迁移与验证记录](docs/migration.md)说明本次实际完成的检查。
+本仓库保留 `./editors/` 结构，根目录提供独立依赖、构建产物、安装入口及发行工具。迁移范围与已完成的检查见[迁移与验证记录](./docs/migration.md)。
