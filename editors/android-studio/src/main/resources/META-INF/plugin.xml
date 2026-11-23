@@ -1,0 +1,18 @@
+<idea-plugin>
+  <id>dev.dsh.ask-for-dsh</id>
+  <name>Ask for DSH</name>
+  <version>0.3.0</version>
+  <vendor>DSH Bridge</vendor>
+  <description><![CDATA[在 Android Studio 中选中 Kotlin、Java、XML 等代码，右键点击 <b>ask for dsh</b>，将文件位置和代码快照作为附件加入当前 DeepSeek Harness 会话。支持未保存内容、多选区、悬停预览、编辑和删除。需要 dsh-code-bridge 0.3.0 或更新版本。]]></description>
+  <idea-version since-build="253"/>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.androidstudio</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="Ask for DSH" displayType="BALLOON" isLogByDefault="true"/>
+  </extensions>
+  <actions>
+    <action id="Dsh.AskForDsh" class="dev.dsh.AskForDshAction" text="ask for dsh" description="Add selected code to the current DSH conversation">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

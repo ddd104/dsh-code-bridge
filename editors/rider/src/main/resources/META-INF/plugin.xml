@@ -1,0 +1,18 @@
+<idea-plugin>
+  <id>dev.dsh.ask-for-dsh</id>
+  <name>Ask for DSH</name>
+  <version>0.3.0</version>
+  <vendor>DSH Bridge</vendor>
+  <description><![CDATA[选中代码，右键点击 <b>ask for dsh</b>，将文件位置和代码快照加入 DeepSeek Harness 对话草稿。支持未保存内容、多选区，自动添加到当前会话，悬停可预览、编辑和删除。需要安装 dsh-code-bridge。]]></description>
+  <idea-version since-build="261"/>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.rider</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="Ask for DSH" displayType="BALLOON" isLogByDefault="true"/>
+  </extensions>
+  <actions>
+    <action id="Dsh.AskForDsh" class="dev.dsh.AskForDshAction" text="ask for dsh" description="Add selected code to a DSH conversation draft">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

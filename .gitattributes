@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.tgz binary
+*.zip binary
+*.vsix binary
+lib/*.js linguist-generated=true whitespace=-blank-at-eol

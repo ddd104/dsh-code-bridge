@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.test-state/
+*.tgz
+*.log
+.env
+.env.*
+!.env.example
+lib/*.map

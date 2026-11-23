@@ -1,0 +1,67 @@
+{
+  "name": "dsh-code-bridge",
+  "version": "0.3.0",
+  "description": "Add selected VS Code, Rider and Android Studio code to the current DSH conversation",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./remote": "./lib/remote.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": [
+    "lib/*.js",
+    "cordis.patch.yml",
+    "README.md",
+    "docs",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.2": "compatible"
+      }
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-session",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-ui-input-trigger"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddd104/dsh-code-bridge.git"
+  },
+  "scripts": {
+    "build": "node scripts/build-code-editors.mjs",
+    "test": "node scripts/test.mjs",
+    "test:editors": "npm test",
+    "check:package": "node scripts/check-package.mjs",
+    "check": "npm run build && npm test && npm run check:package",
+    "package:dsh": "node scripts/package-code-editors.mjs --dsh-only",
+    "package:editors": "node scripts/package-code-editors.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "jsdom": "^26.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-test-renderer": "18.3.1",
+    "zod": "4.4.3"
+  }
+}

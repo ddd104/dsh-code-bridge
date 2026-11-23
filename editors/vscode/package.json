@@ -1,0 +1,50 @@
+{
+  "name": "ask-for-dsh",
+  "displayName": "Ask for DSH",
+  "description": "Right-click selected code to add it to a DeepSeek Harness conversation draft.",
+  "version": "0.3.0",
+  "publisher": "dsh-bridge",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.cjs",
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onCommand:askForDsh.send"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "askForDsh.send",
+        "title": "ask for dsh"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "askForDsh.send",
+          "when": "editorHasSelection && resourceScheme == file",
+          "group": "navigation@99"
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddd104/dsh-code-bridge.git"
+  }
+}
